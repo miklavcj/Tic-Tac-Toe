@@ -1,4 +1,5 @@
 let numberOfClicks = 0;
+let isWinner = false;
 
 /*=== Board ===*/
 let gameBoard = (() => {
@@ -46,6 +47,7 @@ let displayController = (() => {
 
   let gameReset = () => {
     numberOfClicks = 0;
+    isWinner = false;
     let gridContainer = document.querySelector("#gridContainer");
     gridContainer.remove();
     gameBoard.board = ["", "", "", "", "", "", "", "", ""];
@@ -56,6 +58,8 @@ let displayController = (() => {
 
   let playerReset = () => {
     document.querySelector("#players").reset();
+    numberOfClicks = 0;
+    isWinner = false;
     landingPage.style.display = "flex";
     gamePage.style.display = "none";
     let gridContainer = document.querySelector("#gridContainer");
@@ -111,32 +115,16 @@ let gameLogic = (() => {
     let nextSymbol = "";
     if (numberOfClicks === 0 || numberOfClicks % 2 === 0) {
       nextSymbol = "O";
-      displayController.commentLine.innerHTML = `It's ${player1}'s turn.`;
+      displayController.commentLine.innerHTML = `It's <span class="black-text"> ${player1}'s</span> turn.`;
     } else {
       nextSymbol = "X";
-      displayController.commentLine.innerHTML = `It's ${player2}'s turn.`;
+      displayController.commentLine.innerHTML = `It's <span class="black-text"> ${player2}'s</span> turn.`;
     }
     return nextSymbol;
   };
 
   let checkForWinner = () => {
     let gridContainer = document.querySelector("#gridContainer");
-    // check for draw
-    let checkForDraw = () => {
-      if (
-        gameBoard.board[0] !== "" &&
-        gameBoard.board[1] !== "" &&
-        gameBoard.board[2] !== "" &&
-        gameBoard.board[3] !== "" &&
-        gameBoard.board[4] !== "" &&
-        gameBoard.board[5] !== "" &&
-        gameBoard.board[6] !== "" &&
-        gameBoard.board[7] !== "" &&
-        gameBoard.board[8] !== ""
-      ) {
-        displayController.commentLine.innerHTML = "It's a draw";
-      }
-    };
 
     // Check for three in a row
     for (let i = 0; i < 7; i += 3) {
@@ -145,11 +133,9 @@ let gameLogic = (() => {
         gameBoard.board[i] === gameBoard.board[i + 2]
       ) {
         if (gameBoard.board[i] === "X") {
-          displayController.commentLine.innerHTML = `${player1} has won.`;
-          gridContainer.setAttribute("style", "pointer-events:none");
+          player1Won();
         } else if (gameBoard.board[i] === "O") {
-          displayController.commentLine.innerHTML = `${player2} has won.`;
-          gridContainer.setAttribute("style", "pointer-events:none");
+          player2Won();
         }
       } else {
         checkForDraw();
@@ -163,11 +149,9 @@ let gameLogic = (() => {
         gameBoard.board[i] === gameBoard.board[i + 6]
       ) {
         if (gameBoard.board[i] === "X") {
-          displayController.commentLine.innerHTML = `${player1} has won.`;
-          gridContainer.setAttribute("style", "pointer-events:none");
+          player1Won();
         } else if (gameBoard.board[i] === "O") {
-          displayController.commentLine.innerHTML = `${player2} has won.`;
-          gridContainer.setAttribute("style", "pointer-events:none");
+          player2Won();
         }
       } else {
         checkForDraw();
@@ -180,25 +164,51 @@ let gameLogic = (() => {
       gameBoard.board[0] === gameBoard.board[8]
     ) {
       if (gameBoard.board[0] === "X") {
-        displayController.commentLine.innerHTML = `${player1} has won.`;
-        gridContainer.setAttribute("style", "pointer-events:none");
+        player1Won();
       } else if (gameBoard.board[0] === "O") {
-        displayController.commentLine.innerHTML = `${player2} has won.`;
-        gridContainer.setAttribute("style", "pointer-events:none");
+        player2Won();
       }
     } else if (
       gameBoard.board[2] === gameBoard.board[4] &&
       gameBoard.board[2] === gameBoard.board[6]
     ) {
       if (gameBoard.board[2] === "X") {
-        displayController.commentLine.innerHTML = `${player1} has won.`;
-        gridContainer.setAttribute("style", "pointer-events:none");
+        player1Won();
       } else if (gameBoard.board[2] === "O") {
-        displayController.commentLine.innerHTML = `${player2} has won.`;
-        gridContainer.setAttribute("style", "pointer-events:none");
+        player2Won();
       }
     } else {
       checkForDraw();
+    }
+  };
+
+  let player1Won = () => {
+    displayController.commentLine.innerHTML = `<span class="black-text"> ${player1}</span> has won.`;
+    isWinner = true;
+    gridContainer.setAttribute("style", "pointer-events:none");
+  };
+
+  let player2Won = () => {
+    displayController.commentLine.innerHTML = `<span class="black-text"> ${player2}</span> has won.`;
+    isWinner = true;
+    gridContainer.setAttribute("style", "pointer-events:none");
+  };
+
+  // check for draw
+  let checkForDraw = () => {
+    if (
+      gameBoard.board[0] !== "" &&
+      gameBoard.board[1] !== "" &&
+      gameBoard.board[2] !== "" &&
+      gameBoard.board[3] !== "" &&
+      gameBoard.board[4] !== "" &&
+      gameBoard.board[5] !== "" &&
+      gameBoard.board[6] !== "" &&
+      gameBoard.board[7] !== "" &&
+      gameBoard.board[8] !== "" &&
+      isWinner === false
+    ) {
+      displayController.commentLine.innerHTML = "It's a draw";
     }
   };
 

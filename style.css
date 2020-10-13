@@ -6,42 +6,31 @@ body {
 h1,
 h2 {
   text-align: center;
+  margin: 0;
+  padding: 0;
 }
 
-button {
-  padding: 10px 20px;
-  border-radius: 12px;
-  border: none;
-  background: #a5caff;
+h1 {
+  font-size: 2.8rem;
+}
+h2 {
+  font-size: 2.5rem;
+}
+.container {
+  margin-top: 20px;
 }
 
 /*======== style of the fornt page ========*/
-#landing-page {
-  width: 80%;
-  padding: 30px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-#players {
-  width: 100%;
-  margin-bottom: 4em;
-  padding: 15px;
-  display: flex;
-  justify-content: space-between;
-  /*border: 1px solid black;*/
-}
-
-.player {
-  width: 40%;
+.input-field input[type="text"]:focus,
+.materialize-textarea:focus:not([readonly]) {
+  border-bottom: 1px solid#64b5f6 !important;
+  box-shadow: 0 1px 0 0#64b5f6 !important;
 }
 
 /*======== style of the game page ========*/
 #game-page {
   display: none;
-  width: 80%;
+  /*width: 80%;*/
   padding: 30px;
   margin: 0 auto;
   flex-direction: column;
@@ -57,7 +46,7 @@ button {
 }
 
 #gridContainer {
-  width: 50%;
+  /*width: 50%;*/
   display: grid;
   grid-template-columns: repeat(3, 100px);
   grid-template-rows: repeat(3, 100px);
@@ -73,12 +62,9 @@ button {
 }
 
 .cell:hover {
-  background: #a5caff;
+  background: #64b5f6;
 }
 
-#buttons {
-  width: 100%;
-  margin-top: 40px;
-  display: flex;
-  justify-content: space-evenly;
+#comment-line {
+  margin: 0;
 }

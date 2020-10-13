@@ -5,33 +5,83 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tic Tac Toe</title>
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link href="style.css" rel="stylesheet">
+
 </head>
 
 <body>
-    <h1>Tic Tac Toe</h1>
-    <div id="landing-page">
-        <form action="#" id="players">
+    <div class="container">
+        <div class="row center">
+            <di class="col s8 offset-s2">
+                <div class="card-panel  blue lighten-2 white-text">
+                    <h1>Tic Tac Toe</h1>
+                </div>
+
+            </di>
+        </div>
 
 
-            <input type="text" id="player1" class="player" placeholder="Enter player 1" autocomplete="off">
+        <div id="landing-page" class="row center">
+            <div class="col s8 offset-s2">
+                <div class="card-panel grey lighten-5">
+                    <div>
+                        <form action="#" id="players">
 
-            <input type="text" id="player2" class="player" placeholder="Enter player 2" autocomplete="off">
+                            <div class="row">
+                                <div class="input-field col s5 ">
+                                    <input type="text" id="player1" class="player" placeholder="Enter player 1"
+                                        autocomplete="off">
+                                </div>
+                                <div class="input-field col s5 offset-s2">
+                                    <input type="text" id="player2" class="player" placeholder="Enter player 2"
+                                        autocomplete="off">
 
-        </form>
-        <button id="start-game" type="button">Start Game</button>
+                                </div>
+                            </div>
+                        </form>
+                        <button id="start-game" class="waves-effect waves-light  blue lighten-2 btn">Start
+                            Game</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="game-page">
+            <div class="row">
+                <div class="col s12">
+                    <div class="card-panel grey lighten-5">
+
+                        <div class="row center">
+                            <di class="col s12 ">
+                                <div class="card-panel  blue lighten-2 white-text">
+                                    <h2 id="comment-line"></h2>
+                                </div>
+
+                            </di>
+                        </div>
+
+                        <div id="canvas"></div>
+                        <div id="buttons" class="row center">
+                            <button id="new-game" class="col waves-effect waves-light  blue lighten-2 btn offset-s1">New
+                                game</button>
+                            <button id="change-players"
+                                class="col waves-effect waves-light  blue lighten-2 btn offset-s1">Change
+                                players</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
     </div>
-    <div id="game-page">
-        <h2 id="comment-line">
-        </h2>
-        <div id="canvas"></div>
-        <div id="buttons">
-            <button id="new-game" type="button">New game</button>
-            <button id="change-players" type="button">Change players</button></div>
 
-
-    </div>
     <script src="script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </body>
 
 </html>
